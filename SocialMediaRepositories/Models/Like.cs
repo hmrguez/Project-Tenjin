@@ -10,7 +10,7 @@ public class Like
     
     [ForeignKey("Post")]
     public Guid PostId { get; set; }
-    public Post Post { get; set; }
+    public Post? Post { get; set; }
 
     // [ForeignKey("User")]
     public string UserAlias { get; set; }

@@ -1,0 +1,32 @@
+### GET all posts
+GET http://localhost:5007/api/post
+
+### GET a specific post
+GET http://localhost:5007/api/post/fd139beb-9d33-41ab-4d5c-08db3f5bd20e
+
+### POST a new post
+POST http://localhost:5007/api/post
+Content-Type: application/json
+
+{
+  "likeCount": 0,
+  "dateCreated": "2022-04-17T00:00:00Z",
+  "picture": "https://example.com/image.png",
+  "text": "A new post",
+  "userAlias": "johndoe"
+}
+
+### UPDATE a post
+PUT http://localhost:5007/api/post
+Content-Type: application/json
+
+{
+  "id": "7c394d32-f8d7-4e1f-dcae-08db3f5c4042",
+  "likeCount": 5,
+  "picture": "https://example.com/updated-image.png",
+  "text": "An updated post",
+  "UserAlias": "LoremIpsum"
+}
+
+### DELETE a post
+DELETE http://localhost:5007/api/post/7c394d32-f8d7-4e1f-dcae-08db3f5c4042

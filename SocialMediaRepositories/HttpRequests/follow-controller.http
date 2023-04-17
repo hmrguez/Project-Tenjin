@@ -1,0 +1,18 @@
+### GET all follows
+GET http://localhost:5007/api/follow
+
+### GET a specific follow
+GET http://localhost:5007/api/follow/26e7b0d1-db91-465b-b7fc-08db3f604b19
+
+### POST a new follow
+POST http://localhost:5007/api/follow
+Content-Type: application/json
+
+{
+  "followerAlias": "johndoe",
+  "followedAlias": "janedoe",
+  "dateStarted": "2023-04-17T15:00:00Z"
+}
+
+### DELETE a follow
+DELETE http://localhost:5007/api/follow/26e7b0d1-db91-465b-b7fc-08db3f604b19

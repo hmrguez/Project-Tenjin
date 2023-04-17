@@ -1,0 +1,41 @@
+### GET 
+
+GET http://localhost:5007/api/user
+
+### GET by alias
+
+GET http://localhost:5007/api/user/johndoe
+
+### POST
+
+POST http://localhost:5007/api/user
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "alias": "janedoe",
+  "description": "A new user",
+  "emailAddress": "janedoe@example.com",
+  "password": "password",
+  "followerCount": 0,
+  "profilePicture": null
+}
+
+### PUT
+
+PUT http://localhost:5007/api/user
+Content-Type: application/json
+
+{
+  "name": "Updated name",
+  "alias": "johndoe",
+  "description": "Updated description",
+  "emailAddress": "johndoe@example.com",
+  "password": "updated_password",
+  "followerCount": 10,
+  "profilePicture": null
+}
+
+### DELETE
+
+DELETE http://localhost:5007/api/user/johndoe

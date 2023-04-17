@@ -1,0 +1,29 @@
+### GET all comments
+GET http://localhost:5007/api/comment
+
+### GET a specific comment
+GET http://localhost:5007/api/comment/4a7227ed-09bf-47e5-d996-08db3f5eb710
+
+### POST a new comment
+POST http://localhost:5007/api/comment
+Content-Type: application/json
+
+{
+  "userAlias": "johndoe",
+  "postId": "f506208d-b28f-4046-cf59-08db3f5e5c0e",
+  "text": "A new comment"
+}
+
+### UPDATE a comment
+PUT http://localhost:5007/api/comment
+Content-Type: application/json
+
+{
+  "id": "4a7227ed-09bf-47e5-d996-08db3f5eb710",
+  "text": "An updated comment",
+  "userAlias": "LoremIpsum",
+  "postId": "4a7227ed-09bf-47e5-d996-08db3f5eb710"
+}
+
+### DELETE a comment
+DELETE http://localhost:5007/api/comment/4a7227ed-09bf-47e5-d996-08db3f5eb710

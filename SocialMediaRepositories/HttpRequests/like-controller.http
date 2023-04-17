@@ -1,0 +1,18 @@
+### GET all likes
+GET http://localhost:5007/api/like
+
+### GET a specific like
+GET http://localhost:5007/api/like/698ffcdf-6ceb-4b10-e225-08db3f5fb04f
+
+### POST a new like
+POST http://localhost:5007/api/like
+Content-Type: application/json
+
+{
+  "postId": "f506208d-b28f-4046-cf59-08db3f5e5c0e",
+  "userAlias": "johndoe",
+  "dateLiked": "2023-04-17T15:00:00Z"
+}
+
+### DELETE a like
+DELETE http://localhost:5007/api/like/698ffcdf-6ceb-4b10-e225-08db3f5fb04f

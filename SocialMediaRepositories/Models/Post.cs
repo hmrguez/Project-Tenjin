@@ -15,5 +15,5 @@ public class Post
     [Required]
     [ForeignKey("User")]
     public string UserAlias { get; set; }
-    public User User { get; set; }
+    public User? User { get; set; }
 }
