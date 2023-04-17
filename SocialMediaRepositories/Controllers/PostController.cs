@@ -30,6 +30,7 @@ public class PostController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<List<Post>>> CreatePost(Post post)
     {
+        Console.WriteLine(post);
         await _repository.InsertOneAsync(post);
         return Ok(await _repository.PostsAsync());
     }
