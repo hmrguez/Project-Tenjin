@@ -22,7 +22,7 @@ public class PostController : ControllerBase
     }
     
     [HttpGet("{id}")]
-    public async Task<ActionResult<Post>> GetPosts(Guid id)
+    public async Task<ActionResult<Post>> GetPost(Guid id)
     {
         return Ok(await _repository.GetByIdAsync(id));
     }

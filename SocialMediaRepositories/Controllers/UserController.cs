@@ -23,7 +23,7 @@ public class UserController : ControllerBase
     }
     
     [HttpGet("{alias}")]
-    public async Task<ActionResult<User>> GetUsers(string alias)
+    public async Task<ActionResult<User>> GetUser(string alias)
     {
         return Ok(await _repository.GetByAliasAsync(alias));
     }

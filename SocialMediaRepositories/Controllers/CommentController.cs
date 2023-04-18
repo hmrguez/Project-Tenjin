@@ -33,14 +33,14 @@ public class CommentController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Comment>> CreateComment(Comment comment)
+    public async Task<ActionResult<List<Comment>>> CreateComment(Comment comment)
     {
         await _repository.InsertOneAsync(comment);
         return Ok(await _repository.CommentsAsync());
     }
 
     [HttpPut]
-    public async Task<ActionResult<Comment>> UpdateComment(Comment comment)
+    public async Task<ActionResult<List<Comment>>> UpdateComment(Comment comment)
     {
         var dbComment = await _repository.GetByIdAsync(comment.Id);
         if (dbComment == null)
@@ -56,7 +56,7 @@ public class CommentController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteComment(Guid id)
+    public async Task<ActionResult<List<Comment>>> DeleteComment(Guid id)
     {
         var dbComment = await _repository.GetByIdAsync(id);
         if (dbComment == null)
