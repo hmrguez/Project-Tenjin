@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMediaRepositories", "SocialMediaRepositories\SocialMediaRepositories.csproj", "{72C8E337-CC08-454A-818E-A238258405F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMediaApiTesting", "SocialMediaApiTesting\SocialMediaApiTesting.csproj", "{AE23534E-0254-4FAF-92D1-3299E2164E58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{72C8E337-CC08-454A-818E-A238258405F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72C8E337-CC08-454A-818E-A238258405F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72C8E337-CC08-454A-818E-A238258405F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE23534E-0254-4FAF-92D1-3299E2164E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE23534E-0254-4FAF-92D1-3299E2164E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE23534E-0254-4FAF-92D1-3299E2164E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE23534E-0254-4FAF-92D1-3299E2164E58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
