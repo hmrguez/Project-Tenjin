@@ -1,0 +1,9 @@
+### Login with JWT
+
+POST https://localhost:7086/api/Account/login
+Content-Type: application/json
+
+{
+  "Username": "janedoe",
+  "Password": "password"
+}

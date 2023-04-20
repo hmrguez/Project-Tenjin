@@ -1,4 +1,7 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SocialMediaRepositories.Data;
 using SocialMediaRepositories.Interfaces;
 using SocialMediaRepositories.Repositories;
@@ -33,6 +36,23 @@ public class Startup
         {
             policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
         }));
+
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
+        
+        
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,6 +65,8 @@ public class Startup
         app.UseCors("SocialMediaOrigins");
         app.UseHttpsRedirection();
         app.UseRouting();
+
+        app.UseAuthentication();
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
