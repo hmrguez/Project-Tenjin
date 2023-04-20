@@ -1,31 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using SocialMediaRepositories.Data;
-using SocialMediaRepositories.Interfaces;
-using SocialMediaRepositories.Repositories;
+using SocialMediaRepositories;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = Host.CreateDefaultBuilder(args);
+
+builder.ConfigureWebHostDefaults(webBuilder =>
 {
-    builder.Services.AddControllers();
-    builder.Services.AddScoped<IUserRepository, UserRepository>();
-    builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-    builder.Services.AddScoped<IPostRepository, PostRepository>();
-    builder.Services.AddScoped<IFollowRepository, FollowRepository>();
-    builder.Services.AddScoped<ILikeRepository, LikeRepository>();
-    builder.Services.AddDbContext<DataContext>(options =>
-    {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-    });
-    builder.Services.AddCors(options => options.AddPolicy(name: "SocialMediaOrigins", policy =>
-    {
-        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
-    }));
-}
+    webBuilder.UseStartup<Startup>();
+});
 
-var app = builder.Build();
-{
-    app.UseCors("SocialMediaOrigins");
-    app.UseHttpsRedirection();
-    app.MapControllers();
-    app.Run();
-}
-
+await builder.Build().RunAsync();
