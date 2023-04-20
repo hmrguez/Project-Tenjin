@@ -4,6 +4,18 @@ POST https://localhost:7086/api/Account/login
 Content-Type: application/json
 
 {
-  "Username": "janedoe",
-  "Password": "password"
+  "Username": "testuser",
+  "Password": "testpassword"
+}
+
+### Register User
+
+POST https://localhost:7086/api/account/register
+Content-Type: application/json
+
+{
+"alias": "testuser",
+"name": "Test User",
+"email": "testuser@example.com",
+"password": "testpassword"
 }

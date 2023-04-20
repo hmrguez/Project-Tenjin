@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SocialMediaRepositories.Dtos;
+using SocialMediaRepositories.Helper;
 using SocialMediaRepositories.Interfaces;
 using SocialMediaRepositories.Models;
 
@@ -34,8 +35,28 @@ public class AccountController : ControllerBase
             return Ok(token);
         }
 
-        return NotFound("User not found");
+        return NotFound("Wrong credentials");
     }
+    
+    [AllowAnonymous]
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] CreateUserDto userDto)
+    {
+        PasswordHashing.CreatePasswordHash(userDto.Password, out var hash, out var salt);
+        var user = new User
+        {
+            Alias = userDto.Alias,
+            EmailAddress = userDto.Email,
+            PasswordHash = hash,
+            PasswordSalt = salt,
+            Name = userDto.Name
+        };
+
+        await _repository.InsertOneAsync(user);
+        return Ok("Registered User");
+    }
+    
+    
 
     private string Generate(User user)
     {
@@ -63,7 +84,8 @@ public class AccountController : ControllerBase
     private User Authenticate(UserDto userDto)
     {
         var currentUser = _repository.GetByAlias(userDto.Username);
-        if (currentUser == null || currentUser.Password != userDto.Password) currentUser = null;
+        if (currentUser == null || !PasswordHashing.VerifyPasswordHash(userDto.Password, currentUser.PasswordHash, currentUser.PasswordSalt)) 
+            currentUser = null;
         return currentUser!;
     }
 }

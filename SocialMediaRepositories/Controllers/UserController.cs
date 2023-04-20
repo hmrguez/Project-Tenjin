@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SocialMediaRepositories.Helper;
 using SocialMediaRepositories.Interfaces;
 using SocialMediaRepositories.Models;
 
@@ -27,13 +28,6 @@ public class UserController : ControllerBase
     {
         return Ok(await _repository.GetByAliasAsync(alias));
     }
-
-    [HttpPost]
-    public async Task<ActionResult<List<User>>> CreateUser(User user)
-    {
-        await _repository.InsertOneAsync(user);
-        return Ok(await _repository.GetAllUsersAsync());
-    }
     
     [HttpPut]
     public async Task<ActionResult<List<User>>> UpdateUser(User user)
@@ -47,7 +41,6 @@ public class UserController : ControllerBase
         dbUser.FollowerCount = user.FollowerCount;
         dbUser.ProfilePicture = user.ProfilePicture;
         dbUser.EmailAddress = user.EmailAddress;
-        dbUser.Password = user.Password;
 
         await _repository.UpdateOneAsync(dbUser);
 
