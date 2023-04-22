@@ -6,6 +6,7 @@ This project is built with an ASP.NET Core Web API backend, an Angular frontend,
 
 ## Table of Contents
 
+- [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -14,6 +15,12 @@ This project is built with an ASP.NET Core Web API backend, an Angular frontend,
 - [Contributing](#contributing)
 - [Roadmap](#roadmap)
 - [License](#license)
+
+## Features
+
+- User authentication and registration
+- Profile creation and editing
+- Post creation
 
 ## Getting Started
 
@@ -93,9 +100,6 @@ We appreciate any contributions to Project Tenjin! To contribute, please follow 
 
 ## Roadmap
 
-- User authentication and registration
-- Profile creation and editing
-- Post creation, editing and deletion
 - Commenting on posts
 - Liking and sharing posts
 - Real-time chat and messaging
