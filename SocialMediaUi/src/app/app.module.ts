@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditProfileFormComponent } from './components/edit-profile-form/edit-profile-form.component';
+import { CreatePostFormComponent } from './components/create-post-form/create-post-form.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EditProfileFormComponent } from './components/edit-profile-form/edit-pr
     ProfileComponent,
     NavbarComponent,
     EditProfileFormComponent,
+    CreatePostFormComponent,
   ],
   imports: [
     BrowserModule,

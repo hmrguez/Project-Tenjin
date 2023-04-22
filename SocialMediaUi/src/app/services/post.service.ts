@@ -20,7 +20,6 @@ export class PostService {
   }
 
   public createPost(post: any): Observable<Post[]> {
-
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post<Post[]>(this.postUrl, post, {headers: headers});
   }
