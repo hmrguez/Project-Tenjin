@@ -32,7 +32,7 @@ public class AccountController : ControllerBase
         if (user != null)
         {
             var token = Generate(user);
-            return Ok(token);
+            return Ok(new {token});
         }
 
         return NotFound("Wrong credentials");
@@ -74,7 +74,7 @@ public class AccountController : ControllerBase
             _configuration["Jwt:Issuer"], 
             _configuration["Jwt:Audience"], 
             claims,
-            expires: DateTime.Now.AddMinutes(5), 
+            expires: DateTime.Now.AddHours(5), 
             signingCredentials: credentials
             );
 

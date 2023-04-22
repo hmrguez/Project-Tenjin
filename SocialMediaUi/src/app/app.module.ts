@@ -4,17 +4,23 @@ import { HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TempButtonComponent } from './components/temp-button/temp-button.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { FormsModule } from "@angular/forms";
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TempButtonComponent
+    RegisterFormComponent,
+    LoginFormComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

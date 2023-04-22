@@ -1,0 +1,29 @@
+import { Component } from '@angular/core';
+import {RegisterUserDto} from "../../models/dtos/registerUserDto";
+import {AccountService} from "../../services/account.service";
+
+@Component({
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.css']
+})
+export class RegisterFormComponent {
+  username: string = "";
+  email: string = "";
+  password: string = "";
+  confirmPassword: string = "";
+  fullName: string = "";
+
+  constructor(private accountService: AccountService) {}
+  onSubmit() {
+    const registerUserDto = new RegisterUserDto(this.username, this.fullName, this.email, this.password);
+    this.accountService.register(registerUserDto).subscribe(
+      (response) => {
+        console.log('User registered successfully:', response);
+      },
+      (error) => {
+        console.error('Error registering user:', error);
+      }
+    );
+  }
+}
