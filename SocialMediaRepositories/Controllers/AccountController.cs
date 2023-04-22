@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using SocialMediaRepositories.Dtos;
 using SocialMediaRepositories.Helper;
 using SocialMediaRepositories.Interfaces;
-using SocialMediaRepositories.Models;
+using User = SocialMediaRepositories.Models.User;
 
 namespace SocialMediaRepositories.Controllers;
 

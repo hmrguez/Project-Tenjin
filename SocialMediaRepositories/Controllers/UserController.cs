@@ -26,7 +26,8 @@ public class UserController : ControllerBase
     [HttpGet("{alias}")]
     public async Task<ActionResult<User>> GetUser(string alias)
     {
-        return Ok(await _repository.GetByAliasAsync(alias));
+        var temp = await _repository.GetByAliasAsync(alias);
+        return Ok(temp);
     }
     
     [HttpPut]

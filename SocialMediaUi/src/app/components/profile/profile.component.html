@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+
+<div class="box box1">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU" alt="Image subtitle">
+  <h2>Hi I'm {{ user.alias }}</h2>
+  <div class="row">
+    <h3>Description</h3>
+    <p>{{ user?.description ?? "No description yet 😥😥" }}</p>
+  </div>
+  <div class="row">
+    <h3>Email</h3>
+    <p>{{ user.emailAddress }}</p>
+  </div>
+  <div class="row">
+    <h3>Alias</h3>
+    <p>{{ user.alias }}</p>
+  </div>
+  <div class="row">
+    <h3>Name</h3>
+    <p>{{ user.name }}</p>
+  </div>
+  <div class="row buttons">
+    <button>Activity</button>
+    <button>Post</button>
+    <button routerLink="/profile/edit">Edit</button>
+  </div>
+</div>

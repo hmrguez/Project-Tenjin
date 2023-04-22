@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../models/user";
 
@@ -16,9 +16,13 @@ export class UserService {
     return this.http.get<User[]>(url);
   }
 
-  getUserByAlias(alias: string): Observable<User> {
+  getUserByAlias(alias: string) {
     const url = `${this.baseUrl}/user/${alias}`;
-    return this.http.get<User>(url);
+    return this.http.get<User>(url).pipe(
+      map((response) => {
+        console.log(response); // log the response object to the console
+        return response;
+      }));
   }
 
   createUser(user: any): Observable<User> {

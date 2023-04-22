@@ -52,6 +52,7 @@ input[type="password"] {
   color: #f2f2f2;
 }
 
+button,
 input[type="submit"] {
   background-color: #ff3d3d;
   color: #fff;
@@ -67,6 +68,7 @@ input[type="submit"] {
   transition: .5s;
 }
 
+button:hover,
 input[type="submit"]:hover {
   background-color: #ff7f7f;
 }

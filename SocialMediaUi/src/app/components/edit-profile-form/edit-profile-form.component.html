@@ -1,0 +1,12 @@
+<div class="login-box">
+  <div class="form-header">
+    <h1>Update profile info</h1>
+    <p>Please fill in the fields</p>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" id="name" name="name" placeholder="Name" [(ngModel)]="user.name" required>
+    <input type="email" id="email" name="email" placeholder="Email" [(ngModel)]="user.emailAddress" required>
+    <input type="text" id="description" name="description" placeholder="Description" [(ngModel)]="user.description" >
+    <input type="submit" value="Update Info">
+  </form>
+</div>

@@ -8,6 +8,9 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { FormsModule } from "@angular/forms";
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { EditProfileFormComponent } from './components/edit-profile-form/edit-profile-form.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     RegisterFormComponent,
     LoginFormComponent,
     DashboardComponent,
+    ProfileComponent,
+    NavbarComponent,
+    EditProfileFormComponent,
   ],
   imports: [
     BrowserModule,
