@@ -12,6 +12,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditProfileFormComponent } from './components/edit-profile-form/edit-profile-form.component';
 import { CreatePostFormComponent } from './components/create-post-form/create-post-form.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CreatePostFormComponent } from './components/create-post-form/create-po
     NavbarComponent,
     EditProfileFormComponent,
     CreatePostFormComponent,
+    PostCardComponent,
+    FeedComponent,
   ],
   imports: [
     BrowserModule,

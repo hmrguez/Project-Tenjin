@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class FollowService {
 
-  private followUrl = 'http://localhost:5007/api/follow';
+  private followUrl = 'https://localhost:7086/api/follow';
 
   constructor(private http: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { Post } from "../models/post";
 })
 
 export class PostService {
-  private postUrl = "http://localhost:5007/api/post"
+  private postUrl = "https://localhost:7086/api/post"
   constructor(private httpClient : HttpClient) { }
 
   public getPosts() : Observable<Post[]>{

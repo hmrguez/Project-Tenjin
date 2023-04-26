@@ -1,0 +1,22 @@
+.flex-container {
+  display: flex;
+  width: 96%;
+  margin-top: 4rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 2rem;
+  gap: 15px;
+}
+
+.flex-child-1 {
+  flex: 0 0 30%;
+  background-color: #333333;
+  height: 90vh;
+  border-radius: 25px;
+}
+
+.flex-child-2 {
+  flex: 1;
+  background-color: #333333;
+  border-radius: 25px;
+}

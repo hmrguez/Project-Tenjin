@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.profileAlias = params['alias']
     })
-    this.userService.getUserByAlias(this.alias).subscribe((x) => {
+    this.userService.getUserByAlias(this.profileAlias).subscribe((x) => {
       this.user = x;
       console.log(`User: ${x}`)
     })

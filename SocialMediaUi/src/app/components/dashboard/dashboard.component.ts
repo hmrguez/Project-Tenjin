@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Post} from "../../models/post";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-dashboard',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  constructor() {
 
+  }
 }
