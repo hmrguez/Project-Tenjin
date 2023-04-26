@@ -7,7 +7,7 @@ import {User} from "../models/user";
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:5007/api';
+  private baseUrl = 'https://localhost:7086/api/user';
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,8 @@ export class UserService {
   }
 
   getUserByAlias(alias: string) {
-    const url = `${this.baseUrl}/user/${alias}`;
+    const url = `${this.baseUrl}/${alias}`;
+    console.log(url)
     return this.http.get<User>(url).pipe(
       map((response) => {
         console.log(response); // log the response object to the console
