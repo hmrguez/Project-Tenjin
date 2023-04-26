@@ -6,6 +6,7 @@ namespace SocialMediaRepositories.Models;
 public class Follow
 {
     [Key]
+    [Required(AllowEmptyStrings = true)]
     public Guid Id { get; set; }
     
     public DateTime DateStarted { get; set; }

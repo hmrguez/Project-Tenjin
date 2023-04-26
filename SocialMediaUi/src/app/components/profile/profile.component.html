@@ -21,7 +21,8 @@
   </div>
   <div class="row buttons">
     <button>Activity</button>
-    <button routerLink="/post">Post</button>
-    <button routerLink="/profile/edit">Edit</button>
+    <button *ngIf="alias !== profileAlias" (click)="onFollow()">Follow</button>
+    <button *ngIf="alias === profileAlias" routerLink="/post">Post</button>
+    <button *ngIf="alias === profileAlias" routerLink="/profile/edit">Edit</button>
   </div>
 </div>

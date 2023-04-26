@@ -35,8 +35,9 @@ public class FollowController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Follow>> CreateFollow(Follow follow)
     {
-        await _repository.InsertOneAsync(follow);
-        return Ok(await _repository.FollowsAsync());
+        var newFollow = new Follow { FollowedAlias = follow.FollowedAlias, FollowerAlias = follow.FollowerAlias };
+        await _repository.InsertOneAsync(newFollow);
+        return Ok();
     }
 
     [HttpDelete("{id}")]

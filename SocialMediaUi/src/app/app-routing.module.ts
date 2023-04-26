@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  { path: 'profile/:alias', component: ProfileComponent, canActivate: [AuthGuardService]},
   { path: 'profile/edit', component: EditProfileFormComponent, canActivate: [AuthGuardService]},
   { path: 'post', component: CreatePostFormComponent, canActivate: [AuthGuardService]}
 ];

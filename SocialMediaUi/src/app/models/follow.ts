@@ -1,6 +1,6 @@
 export class Follow {
   id: string = "";
-  dateStarted: Date = Date.prototype;
+  dateStarted: Date = new Date();
   followerAlias: string = "";
   followedAlias: string = "";
 }
