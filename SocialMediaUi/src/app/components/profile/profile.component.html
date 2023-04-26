@@ -21,7 +21,9 @@
   </div>
   <div class="row buttons">
     <button>Activity</button>
-    <button *ngIf="alias !== profileAlias" (click)="onFollow()">Follow</button>
+    <button *ngIf="alias !== profileAlias" [disabled]="following" (click)="onFollow()">
+      {{ following ? "Following" : "Follow" }}
+    </button>
     <button *ngIf="alias === profileAlias" routerLink="/post">Post</button>
     <button *ngIf="alias === profileAlias" routerLink="/profile/edit">Edit</button>
   </div>

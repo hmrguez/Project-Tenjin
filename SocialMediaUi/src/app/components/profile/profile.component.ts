@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit{
   public user: User = new User()
   public alias: string = ""
   public profileAlias: string = ""
+  following: boolean = false;
   constructor(private route: ActivatedRoute, private userService: UserService, private authService: AuthService, private followService: FollowService) { }
 
   private getAliasFromToken(): string {
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit{
       console.log(`User: ${x}`)
     })
     this.alias = this.getAliasFromToken();
+    this.checkFollowing()
   }
 
   onFollow(): void{
@@ -45,5 +47,14 @@ export class ProfileComponent implements OnInit{
     this.followService.createFollow(newFollow).subscribe(x => {
       console.log(x)
     })
+  }
+
+  checkFollowing(): void {
+    this.followService.getFollows()
+      .subscribe(follows => {
+        this.following = follows.some(follow =>
+          follow.followerAlias === this.alias && follow.followedAlias === this.profileAlias
+        );
+      });
   }
 }
