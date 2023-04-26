@@ -21,6 +21,8 @@ This project is built with an ASP.NET Core Web API backend, an Angular frontend,
 - User authentication and registration
 - Profile creation and editing
 - Post creation
+- User follow
+- Feed
 
 ## Getting Started
 
