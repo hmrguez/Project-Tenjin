@@ -10,6 +10,8 @@ public class CommentController : ControllerBase
 {
     private readonly ICommentRepository _repository;
 
+    public record CommentRequest(Guid PostId, string UserAlias, string CommentText);
+    
     public CommentController(ICommentRepository repository)
     {
         _repository = repository;
@@ -33,10 +35,16 @@ public class CommentController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<List<Comment>>> CreateComment(Comment comment)
+    public async Task<ActionResult<List<Comment>>> CreateComment(CommentRequest request)
     {
+        var comment = new Comment()
+        {
+            PostId = request.PostId,
+            Text = request.CommentText,
+            UserAlias = request.UserAlias
+        };
         await _repository.InsertOneAsync(comment);
-        return Ok(await _repository.CommentsAsync());
+        return Ok();
     }
 
     [HttpPut]

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <img *ngIf="post.user?.profilePicture" [src]="post.user?.profilePicture" alt="{{ post.user?.name }}'s Avatar'" class="avatar">
+<!--    <img *ngIf="post.?.profilePicture" [src]="post.user?.profilePicture" alt="{{ post.user?.name }}'s Avatar'" class="avatar">-->
     <h2 routerLink="/profile/{{post.userAlias}}" >{{ post.userAlias }}</h2>
   </div>
   <div class="card-body">
@@ -10,5 +10,12 @@
   <div class="card-footer">
     <p class="like-count">{{ post.likeCount }} likes</p>
     <p class="date-created">{{ post.dateCreated | date }}</p>
+    <p class="date-created">{{ post.guid }}</p>
+  </div>
+  <div class="card-footer">
+    <form (ngSubmit)="onSubmit()">
+      <input type="text" [(ngModel)]="commentText" name="commentText" placeholder="Enter your comment">
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </div>

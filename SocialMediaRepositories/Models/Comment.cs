@@ -7,6 +7,7 @@ namespace SocialMediaModels;
 public class Comment
 {
     [Key]
+    [Required(AllowEmptyStrings = true)]
     public Guid Id { get; set; }
     
     [Required]

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Post } from "../models/post";
+import {PostResponse} from "../models/dtos/postResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class PostService {
   private postUrl = "https://localhost:7086/api/post"
   constructor(private httpClient : HttpClient) { }
 
-  public getPosts() : Observable<Post[]>{
-    return this.httpClient.get<Post[]>(this.postUrl);
+  public getPosts() : Observable<PostResponse[]>{
+    return this.httpClient.get<PostResponse[]>(this.postUrl);
   }
 
   public getSinglePost(id: string) : Observable<Post>{
