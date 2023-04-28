@@ -1,0 +1,9 @@
+<div class="profile-card">
+  <div class="profile-picture">
+    <img [src]="profilePictureUrl" alt="Profile Picture">
+  </div>
+  <div class="profile-info">
+    <h2>@{{ username }} </h2>
+    <app-follow-btn [profileAlias]="username"></app-follow-btn>
+  </div>
+</div>

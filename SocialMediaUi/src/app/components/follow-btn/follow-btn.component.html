@@ -1,0 +1,3 @@
+<button *ngIf="alias !== profileAlias" [disabled]="following" (click)="onFollow()">
+  {{ following ? "Following" : "Follow" }}
+</button>

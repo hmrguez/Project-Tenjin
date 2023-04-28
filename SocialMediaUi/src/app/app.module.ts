@@ -14,6 +14,9 @@ import { EditProfileFormComponent } from './components/edit-profile-form/edit-pr
 import { CreatePostFormComponent } from './components/create-post-form/create-post-form.component';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { FollowBtnComponent } from './components/follow-btn/follow-btn.component';
+import { ProfileCardComponent } from './components/profile-card/profile-card.component';
+import { ProfileCarouselComponent } from './components/profile-carousel/profile-carousel.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { FeedComponent } from './components/feed/feed.component';
     CreatePostFormComponent,
     PostCardComponent,
     FeedComponent,
+    FollowBtnComponent,
+    ProfileCardComponent,
+    ProfileCarouselComponent,
   ],
   imports: [
     BrowserModule,

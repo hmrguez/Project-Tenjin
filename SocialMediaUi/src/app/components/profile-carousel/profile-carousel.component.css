@@ -1,0 +1,17 @@
+.profile-carousel-container {
+  /*width: 100%;*/
+  overflow: hidden;
+}
+
+.profile-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  width: 500px; /* example fixed width */
+  margin: 1rem auto;
+}
+
+
+app-profile-card {
+  margin-right: 10px;
+}

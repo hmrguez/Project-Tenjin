@@ -3,6 +3,6 @@ export class User{
     name: string = "";
     emailAddress: string = "";
     profilePicture: string = "";
-    description: string = "";
+    description?: string = "";
     followerCount: number = 0;
 }
