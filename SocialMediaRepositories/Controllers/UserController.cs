@@ -5,6 +5,8 @@ using SocialMediaRepositories.Models;
 
 namespace SocialMediaRepositories.Controllers;
 
+public record UserResponse(string Alias, string Name, string EmailAddress, string? ProfilePicture, string Description);
+
 
 [Route("api/[controller]")]
 [ApiController]
@@ -20,18 +22,18 @@ public class UserController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<User>>> GetUsers()
     {
-        return Ok(await _repository.GetAllUsersAsync());
+        return Ok(await GetAllUsersResponse());
     }
     
     [HttpGet("{alias}")]
     public async Task<ActionResult<User>> GetUser(string alias)
     {
         var temp = await _repository.GetByAliasAsync(alias);
-        return Ok(temp);
+        return Ok(new UserResponse(temp.Alias, temp.Name, temp.EmailAddress, temp.ProfilePicture!, temp.Description!));
     }
     
     [HttpPut]
-    public async Task<ActionResult<List<User>>> UpdateUser(User user)
+    public async Task<ActionResult<List<User>>> UpdateUser(UserResponse user)
     {
         var dbUser = await _repository.GetByAliasAsync(user.Alias);
         if (dbUser == null)
@@ -39,13 +41,11 @@ public class UserController : ControllerBase
 
         dbUser.Description = user.Description;
         dbUser.Name = user.Name;
-        dbUser.FollowerCount = user.FollowerCount;
         dbUser.ProfilePicture = user.ProfilePicture;
         dbUser.EmailAddress = user.EmailAddress;
 
         await _repository.UpdateOneAsync(dbUser);
-
-        return Ok(await _repository.GetAllUsersAsync());
+        return Ok();
     }
     
     [HttpDelete("{alias}")]
@@ -56,6 +56,13 @@ public class UserController : ControllerBase
             return NotFound();
         
         await _repository.DeleteAsync(dbUser);
-        return Ok(await _repository.GetAllUsersAsync());
+        return Ok();
+    }
+
+    private async Task<IEnumerable<UserResponse>> GetAllUsersResponse()
+    {
+        var response = (await _repository.GetAllUsersAsync())
+            .Select(x => new UserResponse(x.Alias, x.Name, x.EmailAddress, x.ProfilePicture!, x.Description!));
+        return response;
     }
 }

@@ -4,6 +4,8 @@ using SocialMediaRepositories.Models;
 
 namespace SocialMediaRepositories.Controllers;
 
+public record PostResponse(Guid Guid, int LikeCount, DateTime DateCreated, string? Picture, string? Text, string UserAlias);
+
 [Route("api/[controller]")]
 [ApiController]
 public class PostController : ControllerBase
@@ -18,13 +20,16 @@ public class PostController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<Post>>> GetPosts()
     {
-        return Ok(await _repository.PostsAsync());
+        var posts = (await _repository.PostsAsync())
+            .Select(x=> new PostResponse(x.Id, x.LikeCount, x.DateCreated, x.Picture, x.Text, x.UserAlias));
+        return Ok(posts);
     }
     
     [HttpGet("{id}")]
     public async Task<ActionResult<Post>> GetPost(Guid id)
     {
-        return Ok(await _repository.GetByIdAsync(id));
+        var temp = await _repository.GetByIdAsync(id);
+        return Ok(new PostResponse(temp.Id, temp.LikeCount, temp.DateCreated, temp.Picture, temp.Text, temp.UserAlias));
     }
 
     [HttpPost]
@@ -32,7 +37,7 @@ public class PostController : ControllerBase
     {
         post.Id = new Guid();
         await _repository.InsertOneAsync(post);
-        return Ok(await _repository.PostsAsync());
+        return Ok();
     }
     
     [HttpPut]
@@ -47,7 +52,7 @@ public class PostController : ControllerBase
         dbPost.Text = post.Text;
 
         await _repository.UpdateOneAsync(dbPost);
-        return Ok(await _repository.PostsAsync());
+        return Ok();
     }
     
     [HttpDelete("{id}")]
@@ -58,6 +63,6 @@ public class PostController : ControllerBase
             return NotFound();
 
         await _repository.DeleteAsync(dbPost);
-        return Ok(await _repository.PostsAsync());
+        return Ok();
     }
 }

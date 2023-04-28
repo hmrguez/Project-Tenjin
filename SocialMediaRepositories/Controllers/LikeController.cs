@@ -4,6 +4,7 @@ using SocialMediaRepositories.Models;
 
 namespace SocialMediaRepositories.Controllers;
 
+
 [Route("api/[controller]")]
 [ApiController]
 public class LikeController : ControllerBase
