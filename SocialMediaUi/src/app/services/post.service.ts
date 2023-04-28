@@ -16,6 +16,12 @@ export class PostService {
     return this.httpClient.get<PostResponse[]>(this.postUrl);
   }
 
+  public likePost(postId: string) : Observable<PostResponse>{
+    console.log("Post: " +  postId)
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post<PostResponse>(`${this.postUrl}/like`, postId, {headers: headers});
+  }
+
   public getSinglePost(id: string) : Observable<Post>{
     return this.httpClient.get<Post>(`${this.postUrl}/${id}`);
   }

@@ -5,15 +5,19 @@ using SocialMediaRepositories.Models;
 namespace SocialMediaRepositories.Controllers;
 
 
+public record LikeRequest(string UserAlias, Guid PostId);
+
 [Route("api/[controller]")]
 [ApiController]
 public class LikeController : ControllerBase
 {
     private readonly ILikeRepository _repository;
+    private readonly IPostRepository _postRepository;
 
-    public LikeController(ILikeRepository repository)
+    public LikeController(ILikeRepository repository, IPostRepository postRepository)
     {
         _repository = repository;
+        _postRepository = postRepository;
     }
 
     [HttpGet]
@@ -34,10 +38,21 @@ public class LikeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Like>> CreateLike(Like like)
+    public async Task<ActionResult<Like>> CreateLike(LikeRequest like)
     {
-        await _repository.InsertOneAsync(like);
-        return Ok(await _repository.LikesAsync());
+        var newLike = new Like
+        {
+            PostId = like.PostId,
+            UserAlias = like.UserAlias
+        };
+        var post = await _postRepository.GetByIdAsync(like.PostId);
+        if (post == null)
+            return NotFound();
+        
+        post.LikeCount++;
+        await _postRepository.UpdateOneAsync(post);
+        await _repository.InsertOneAsync(newLike);
+        return Ok();
     }
 
     [HttpDelete("{id}")]
@@ -51,6 +66,6 @@ public class LikeController : ControllerBase
 
         await _repository.DeleteAsync(dbLike);
 
-        return Ok(await _repository.LikesAsync());
+        return Ok();
     }
 }

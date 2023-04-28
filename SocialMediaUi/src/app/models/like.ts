@@ -5,5 +5,5 @@ export class Like {
   postId: string = "";
   post?: Post;
   userAlias: string = "";
-  dateLiked: Date = Date.prototype;
+  dateLiked: Date = new Date();
 }

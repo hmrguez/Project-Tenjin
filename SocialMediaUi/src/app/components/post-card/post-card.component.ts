@@ -1,22 +1,32 @@
-import {Component, Input} from '@angular/core';
-import {Post} from "../../models/post";
-import {User} from "../../models/user";
-import {Comment} from "../../models/comment";
+import {Component, Input, OnInit} from '@angular/core';
 import {CommentService} from "../../services/comment.service";
 import {AuthService} from "../../services/auth.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {PostResponse} from "../../models/dtos/postResponse";
+import {LikeService} from "../../services/like.service";
+import {Like} from "../../models/like";
+import {PostService} from "../../services/post.service";
 
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
   styleUrls: ['./post-card.component.css']
 })
-export class PostCardComponent {
+export class PostCardComponent implements OnInit {
   @Input() post: PostResponse = new PostResponse();
-  private jwtHelper = new JwtHelperService();
+  liked: boolean = false;
   commentText: string = '';
-  constructor(private commentService: CommentService, private authService: AuthService) { }
+  private jwtHelper = new JwtHelperService();
+
+  constructor(private likeService: LikeService, private commentService: CommentService, private authService: AuthService, private postService: PostService) {
+  }
+
+  ngOnInit(): void {
+    const user = this.getAliasFromToken();
+    this.likeService.hasLikedByUser(user, this.post.guid).subscribe(
+      x => this.liked = x
+    );
+  }
 
   onSubmit() {
     const newComment = {
@@ -33,6 +43,16 @@ export class PostCardComponent {
     this.commentService.createComment(newComment).subscribe((result) => {
       console.log('Comment posted successfully: ', result);
     });
+  }
+  onLike() {
+    let like = new Like();
+    like.userAlias = this.getAliasFromToken()
+    like.postId = this.post.guid;
+    this.post.likeCount++;
+
+    this.likeService.createLike(like).subscribe(x => {
+      console.log('Liked successfully')
+    })
   }
 
   private getAliasFromToken(): string {

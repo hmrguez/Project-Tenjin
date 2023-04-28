@@ -12,6 +12,9 @@
     <p class="date-created">{{ post.dateCreated | date }}</p>
     <p class="date-created">{{ post.guid }}</p>
   </div>
+  <div class="class-footer">
+    <button (click)="onLike()">Like</button>
+  </div>
   <div class="card-footer">
     <form (ngSubmit)="onSubmit()">
       <input type="text" [(ngModel)]="commentText" name="commentText" placeholder="Enter your comment">

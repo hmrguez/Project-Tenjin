@@ -16,5 +16,5 @@ public class Like
     public string UserAlias { get; set; }
     // public User User { get; set; }
     
-    public DateTime DateLiked { get; set; }
+    public DateTime DateLiked { get; set; } = DateTime.Now;
 }
