@@ -15,11 +15,13 @@ namespace SocialMediaApiTesting.ControllerTests
     {
         private readonly LikeController _controller;
         private readonly Mock<ILikeRepository> _mockRepository;
+        private readonly Mock<IPostRepository> _mockPostRepository;
 
         public LikeControllerTests()
         {
             _mockRepository = new Mock<ILikeRepository>();
-            // _controller = new LikeController(_mockRepository.Object);
+            _mockPostRepository = new Mock<IPostRepository>();
+            _controller = new LikeController(_mockRepository.Object, _mockPostRepository.Object);
         }
 
         [Fact]
@@ -73,22 +75,24 @@ namespace SocialMediaApiTesting.ControllerTests
             result.Result.Should().BeOfType<NotFoundResult>();
         }
 
-        // [Fact]
-        // public async Task CreateLike_ReturnsOkObjectResult_WithListOfLikes()
-        // {
-        //     // Arrange
-        //     var like = new Like { Id = Guid.NewGuid(), PostId = Guid.NewGuid() };
-        //     _mockRepository.Setup(x => x.InsertOneAsync(like)).Returns(Task.CompletedTask);
-        //     _mockRepository.Setup(x => x.LikesAsync()).ReturnsAsync(new List<Like> { like });
-        //
-        //     // Act
-        //     var result = await _controller.CreateLike(like);
-        //
-        //     // Assert
-        //     var okObjectResult = result.Result as OkObjectResult;
-        //     okObjectResult.Should().NotBeNull();
-        //     okObjectResult?.Value.Should().BeEquivalentTo(new List<Like> { like });
-        // }
+        [Fact]
+        public async Task CreateLike_IncrementsPostLikeCount_AndInsertsNewLike()
+        {
+            // Arrange
+            var postId = new Guid();
+            var userAlias = "testuser";
+            var likeRequest = new LikeRequest(userAlias, postId);
+            var post = new Post { Id = postId, LikeCount = 0 };
+            _mockPostRepository.Setup(x => x.GetByIdAsync(postId)).ReturnsAsync(post);
+
+            // Act
+            var result = await _controller.CreateLike(likeRequest);
+
+            // Assert
+            _mockPostRepository.Verify(x => x.UpdateOneAsync(post), Times.Once);
+            _mockRepository.Verify(x => x.InsertOneAsync(It.Is<Like>(l => l.PostId == postId && l.UserAlias == userAlias)), Times.Once);
+            result.Result.Should().BeOfType<OkResult>();
+        }
 
         [Fact]
         public async Task DeleteLike_WithValidId_ReturnsOkObjectResult_WithListOfLikes()
@@ -104,9 +108,8 @@ namespace SocialMediaApiTesting.ControllerTests
             var result = await _controller.DeleteLike(likeId);
 
             // Assert
-            var okObjectResult = result as OkObjectResult;
+            var okObjectResult = result as OkResult;
             okObjectResult.Should().NotBeNull();
-            okObjectResult?.Value.Should().BeEquivalentTo(new List<Like>());
         }
 
         [Fact]

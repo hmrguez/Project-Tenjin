@@ -2,7 +2,7 @@
 GET http://localhost:5007/api/post
 
 ### GET a specific post
-GET http://localhost:5007/api/post/ef06e7a5-399c-4ae3-02ff-08db43893c6c
+GET http://localhost:5007/api/post/16095db4-7e5e-41a6-a873-08db477e708a
 
 ### POST a new post
 POST http://localhost:5007/api/post
@@ -12,7 +12,7 @@ Content-Type: application/json
   "likeCount": 0,
   "dateCreated": "2022-04-17T00:00:00Z",
   "picture": "https://example.com/image.png",
-  "text": "A new post",
+  "text": "A new post 2",
   "userAlias": "janedoe"
 }
 

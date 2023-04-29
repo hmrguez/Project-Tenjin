@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-using SocialMediaRepositories.Data;
+using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 using SocialMediaRepositories.Interfaces;
 using SocialMediaRepositories.Models;
 
@@ -7,53 +8,64 @@ namespace SocialMediaRepositories.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    private readonly DataContext _dbContext;
+    private readonly IDbConnection _db;
 
-    public UserRepository(DataContext dbContext)
+    public UserRepository(IConfiguration configuration)
     {
-        _dbContext = dbContext;
+        _db = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
     }
 
     public IEnumerable<User> GetAllUsers()
     {
-        return _dbContext.Users.ToList();
+        throw new NotImplementedException();
     }
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        return await _dbContext.Users.ToListAsync();
+        return await _db.QueryAsync<User>("select * from Users");
     }
 
     public User GetByAlias(string alias)
     {
-        return _dbContext.Users.FirstOrDefault(u => u.Alias == alias);
+        throw new NotImplementedException();
     }
 
     public async Task<User> GetByAliasAsync(string alias)
     {
-        return await _dbContext.Users.FirstOrDefaultAsync(u => u.Alias == alias);
+        return await _db.QueryFirstOrDefaultAsync<User>("select * from Users where Alias = @Alias", new { Alias = alias });
     }
 
     public async Task<User> GetByEmailAsync(string email)
     {
-        return await _dbContext.Users.FirstOrDefaultAsync(u => u.EmailAddress == email);
+        throw new NotImplementedException();
+        // return await _dbContext.Users.FirstOrDefaultAsync(u => u.EmailAddress == email);
     }
 
     public async Task InsertOneAsync(User user)
     {
-        await _dbContext.Users.AddAsync(user);
-        await _dbContext.SaveChangesAsync();
+        await _db.ExecuteAsync(@"INSERT INTO Users (Alias, Name, EmailAddress, PasswordHash, PasswordSalt, ProfilePicture, Description, FollowerCount)
+        VALUES (@Alias, @Name, @EmailAddress, @PasswordHash, @PasswordSalt, @ProfilePicture, @Description, @FollowerCount);", user);
+        // await _dbContext.Users.AddAsync(user);
+        // await _dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(User user)
     {
-        _dbContext.Users.Remove(user);
-        await _dbContext.SaveChangesAsync();
+        var sql = "DELETE FROM Users WHERE Alias = @Alias";
+        await _db.ExecuteAsync(sql, user);
     }
 
     public async Task UpdateOneAsync(User user)
     {
-        _dbContext.Users.Update(user);
-        await _dbContext.SaveChangesAsync();
+        var sql = @"UPDATE Users
+                SET Name = @Name,
+                    EmailAddress = @EmailAddress,
+                    PasswordHash = @PasswordHash,
+                    PasswordSalt = @PasswordSalt,
+                    ProfilePicture = @ProfilePicture,
+                    Description = @Description,
+                    FollowerCount = @FollowerCount
+                WHERE Alias = @Alias";
+        await _db.ExecuteAsync(sql, user);
     }
 }

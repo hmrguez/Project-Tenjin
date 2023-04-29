@@ -58,7 +58,7 @@ public class AccountController : ControllerBase
     
     
 
-    private string Generate(User user)
+    public string Generate(User user)
     {
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -81,7 +81,7 @@ public class AccountController : ControllerBase
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    private User Authenticate(UserDto userDto)
+    public User Authenticate(UserDto userDto)
     {
         var currentUser = _repository.GetByAlias(userDto.Username);
         if (currentUser == null || !PasswordHashing.VerifyPasswordHash(userDto.Password, currentUser.PasswordHash, currentUser.PasswordSalt)) 

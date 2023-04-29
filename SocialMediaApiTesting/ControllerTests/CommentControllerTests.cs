@@ -72,20 +72,26 @@ public class CommentControllerTests
         okResult.Should().NotBeNull();
     }
 
-    // [Fact]
-    // public async Task CreateComment_ReturnsOkObjectResult_WithListOfComments()
-    // {
-    //     // Arrange
-    //     var comment = new Comment { Id = Guid.NewGuid(), Text = "New Comment" };
-    //
-    //     // Act
-    //     var result = await _controller.CreateComment(comment);
-    //     var okResult = result.Result as OkObjectResult;
-    //
-    //     // Assert
-    //     okResult.Should().NotBeNull();
-    //     _mockRepository.Verify(repo => repo.InsertOneAsync(comment), Times.Once);
-    // }
+    [Fact]
+    public async Task CreateComment_ReturnsOkObjectResult_WithListOfComments()
+    {
+        // Arrange
+        var commentRequest = new CommentController.CommentRequest(Guid.NewGuid(), "testuser", "test comment");
+        var comment = new Comment
+        {
+            Id = new Guid(),
+            PostId = commentRequest.PostId,
+            Text = commentRequest.CommentText,
+            UserAlias = commentRequest.UserAlias
+        };
+        
+        // Act
+        var result = await _controller.CreateComment(commentRequest);
+        var okResult = result.Result as OkResult;
+    
+        // Assert
+        okResult.Should().NotBeNull();
+    }
 
     [Fact]
     public async Task UpdateComment_WithValidComment_ReturnsOkObjectResult_WithListOfComments()

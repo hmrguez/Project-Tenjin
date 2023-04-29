@@ -4,7 +4,7 @@ GET http://localhost:5007/api/user
 
 ### GET by alias
 
-GET http://localhost:5007/api/user/johndoe
+GET http://localhost:5007/api/user/janedoe
 
 ### PUT
 
@@ -12,7 +12,7 @@ PUT https://localhost:7086/api/user
 Content-Type: application/json
 
 {
-  "name": "Updated name",
+  "name": "Updated name 2",
   "alias": "janedoe",
   "description": "Updated description",
   "emailAddress": "johndoe@example.com",

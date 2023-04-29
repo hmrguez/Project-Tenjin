@@ -20,7 +20,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<User>>> GetUsers()
+    public async Task<ActionResult<List<UserResponse>>> GetUsers()
     {
         return Ok(await GetAllUsersResponse());
     }
