@@ -10,6 +10,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 export class NavbarComponent implements OnInit{
   private jwtHelper = new JwtHelperService();
   profile: string = '';
+  isLoggedIn: boolean = false;
 
   constructor(private authService: AuthService) {
 
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn()
     const alias = this.getAliasFromToken();
     this.profile = `/profile/${alias}`;
     console.log(this.profile)

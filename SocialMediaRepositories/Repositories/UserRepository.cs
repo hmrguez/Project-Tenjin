@@ -27,7 +27,7 @@ public class UserRepository : IUserRepository
 
     public User GetByAlias(string alias)
     {
-        throw new NotImplementedException();
+        return _db.QueryFirstOrDefault<User>("select * from Users where Alias = @Alias", new { Alias = alias });
     }
 
     public async Task<User> GetByAliasAsync(string alias)

@@ -51,9 +51,16 @@ public class AccountController : ControllerBase
             PasswordSalt = salt,
             Name = userDto.Name
         };
-
-        await _repository.InsertOneAsync(user);
-        return Ok("Registered User");
+        try
+        {
+            await _repository.InsertOneAsync(user);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
     
     

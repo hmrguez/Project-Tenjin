@@ -17,6 +17,8 @@ import { FeedComponent } from './components/feed/feed.component';
 import { FollowBtnComponent } from './components/follow-btn/follow-btn.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { ProfileCarouselComponent } from './components/profile-carousel/profile-carousel.component';
+import { FollowDashboardListComponent } from './components/follow-dashboard-list/follow-dashboard-list.component';
+import { FollowDashboardElementComponent } from './components/follow-dashboard-element/follow-dashboard-element.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { ProfileCarouselComponent } from './components/profile-carousel/profile-
     FollowBtnComponent,
     ProfileCardComponent,
     ProfileCarouselComponent,
+    FollowDashboardListComponent,
+    FollowDashboardElementComponent,
   ],
   imports: [
     BrowserModule,

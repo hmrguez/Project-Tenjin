@@ -1,0 +1,19 @@
+.profile-card-dashboard {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  background-color: #1a1a1a;
+  padding: 10px;
+}
+
+profile-dashboard-element-picture {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  font-size: 16px;
+  color: #fff;
+}
