@@ -3,7 +3,7 @@
     <img [src]="profilePictureUrl" alt="Profile Picture">
   </div>
   <div class="profile-info">
-    <h2>@{{ username }} </h2>
+    <a [routerLink]="profileRoute">@{{ username }} </a>
     <app-follow-btn [profileAlias]="username"></app-follow-btn>
   </div>
 </div>

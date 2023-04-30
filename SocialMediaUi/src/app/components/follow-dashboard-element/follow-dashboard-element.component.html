@@ -1,4 +1,4 @@
 <div class="profile-card-dashboard">
   <img [src]="profile.profilePicture" alt="Profile picture" class="profile-dashboard-element-picture">
-  <span class="username"> @{{profile.username}}</span>
+  <a routerLink="/profile/{{profile.username}}" class="username"> @{{profile.username}}</a>
 </div>
