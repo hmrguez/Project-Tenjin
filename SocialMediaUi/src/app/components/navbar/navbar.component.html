@@ -5,8 +5,13 @@
     <a href="#" class="navbar-link active">Feed</a>
   </div>
 
-  <div class="navbar-right" *ngIf="!isLoggedIn">
+  <div class="navbar-right" *ngIf="!isLoggedIn; else loggedInBlock">
     <a routerLink="/login" class="navbar-button">Login</a>
     <a routerLink="/register" class="navbar-button">Sign up</a>
   </div>
+  <ng-template #loggedInBlock>
+    <div class="navbar-right">
+      <a (click)="logout()" class="navbar-button">Logout</a>
+    </div>
+  </ng-template>
 </nav>
